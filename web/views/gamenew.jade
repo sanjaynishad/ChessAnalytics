@@ -1,0 +1,50 @@
+extends layout
+include includes/mixins
+
+		
+
+block content
+	input#fen_selection(name="fen_selection",type="hidden",value="rnbqkbnr/pppppppp/8/8/8/8/PPPPPPPP/RNBQKBNR w KQkq - 0 1")
+	input#pgn1(name="pgn1",type="hidden" value="#{game.pgn}")
+	div.container.game_page
+		ul.breadcrumb
+			li
+				a(href='/', title='Dashboard') Dashboard
+				span.divider /
+			li.active Game
+		div.row
+			h1.span12 #{game.white}(#{game.whiteelo}) vs #{game.black}(#{game.blackelo}) #{game.result}
+
+		h3
+			div.details
+				div.row
+					div.span12 #{game.event} on #{game.date} - #{game.timecontrol} #{game.termination}
+		div.container
+			div.row
+				div.col-md-12(style="margin-bottom:1%") 
+					button.btn.btn-default(onclick="KingdomPGN.Play()") Play
+					button.btn.btn-default(onclick="KingdomPGN.Stop()") Stop
+					button.btn.btn-default(onclick="KingdomPGN.Next()") Next
+			div.row
+				div.col-md-6
+					div.row
+						div.col-md-12
+							<div id="board"></div>
+				div.col-md-3
+					div.row
+						div.col-md-12
+							div#moveList(style="height: 500px")
+
+		ol.row.game.striped
+
+			each turn in game.analysis.game.turns
+				li.span7(data-turn="#{turn.turn}")
+					span.white.side
+						- if (turn.white && turn.white.actual_move.bestmove[0])	
+							mixin turn(turn.white)
+					span.black.side
+						- if (turn.black && turn.black.actual_move.bestmove[0])	
+							mixin turn(turn.black)
+
+
+script(type="text/javascript").

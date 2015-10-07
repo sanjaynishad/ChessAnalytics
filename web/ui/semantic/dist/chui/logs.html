@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+</head>
+<body>
+    <div class="ui container">
+        <a href="/" class="brand">Chess Analytics</a>
+
+        <div class="ui small modal">
+            <i class="close icon"></i>
+            <div class="header">
+                Analyze a Game
+            </div>
+            <div class="content">
+              <div class="ui form">
+                <div class="field">
+                  <div class="ui checkbox">
+                    <input type="checkbox" checked="checked" name="contact-me">
+                    <label>Private?</label>
+                  </div>
+                </div>
+                <div class="field">
+                  <label>PGN - Must be valid! Don't break me!</label>
+                  <textarea></textarea>
+                </div>
+              </div>
+            </div>
+            <div class="actions">
+                <div class="ui primary button">Submit</div>
+            </div>
+        </div>
+
+        <div class="ui small modal">
+            <i class="close icon"></i>
+            <div class="header">
+                Analysis Queue
+            </div>
+            <div class="content">
+                <div class="ui left labeled button" tabindex="0">
+                    <a class="ui basic right pointing label count">
+                        2,048
+                    </a>
+                    <div class="ui button">
+                        Game(s) in the Queue
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <ul class="ui list">
+            <li><a href="/logs/1440991435225.txt">1440991435225.txt</a></li>
+        </ul>
+
+
+    </div>
+
+    <script>
+        $('.ui.small.modal').modal('show');
+    </script>
+</body>
+</html>

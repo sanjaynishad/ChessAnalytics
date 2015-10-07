@@ -1,0 +1,42 @@
+extends layout
+include includes/mixins
+
+block content
+	div.container.game_page
+		ul.breadcrumb
+			li
+				a(href='/', title='Dashboard') Dashboard
+				span.divider /
+			li.active Game
+		div.row
+			h1.span12 #{game.white}(#{game.whiteelo}) vs #{game.black}(#{game.blackelo}) #{game.result}
+
+		h3
+			div.details
+				div.row
+					div.span12 #{game.event} on #{game.date} - #{game.timecontrol} #{game.termination}
+		div#boardContainer
+			div#board
+				div#chessToolBar
+					img.tbBtn(src="/icons/skip-backward.png", title="", onclick="chess.backToStart();")
+					img.tbBtn(src="/icons/backward.png", title="", onclick="chess.navigate(-10, true);")
+					img.tbBtn(src="/icons/reverse-play.png", title="", onclick="chess.navigate(-1, true);")
+					img.tbBtn(src="/icons/stop.png", title="", onclick="chess.stopMotion();")
+					img.tbBtn(src="/icons/play.png", title="", onclick="chess.navigate(1, true);")
+					img.tbBtn(src="/icons/forward.png", title="", onclick="chess.navigate(10, true);")
+					img.tbBtn(src="/icons/skip-forward.png", title="", onclick="chess.returnToEnd();")
+					img.tbBtn(src="/icons/go-previous.png", title="", onclick="chess.navigate(-1);")
+					img.tbBtn(src="/icons/go-next.png", title="", onclick="chess.navigate(1);")
+
+				div#chessDesk(data-loader="chessboard")
+
+		ol.row.game.striped
+
+			each turn in game.analysis.game.turns
+				li.span7(data-turn="#{turn.turn}")
+					span.white.side
+						- if (turn.white && turn.white.actual_move.bestmove[0])	
+							mixin turn(turn.white)
+					span.black.side
+						- if (turn.black && turn.black.actual_move.bestmove[0])	
+							mixin turn(turn.black)

@@ -1,0 +1,367 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+    <link rel="stylesheet" type="text/css" href="semantic.min.css">
+    <link rel="stylesheet" type="text/css" href="chessboard-0.3.0.min.css">
+</head>
+<body>
+
+   <div class="ui container">
+        <div>
+            <a href="/" class="ui primary button">Chess Analytics</a>
+        </div>
+
+        <div class="ui divider"></div>
+
+        <button class="ui base button open-modal" data-modal="modal-game">Analyze a Game</button>
+        <div class="ui small modal" id="modal-game">
+            <i class="close icon"></i>
+            <div class="header">
+                Analyze a Game
+            </div>
+            <div class="content">
+              <div class="ui form">
+                <div class="field">
+                  <div class="ui checkbox">
+                    <input type="checkbox" name="contact-me">
+                    <label>Private?</label>
+                  </div>
+                </div>
+                <div class="field">
+                  <label>PGN - Must be valid! Don't break me!</label>
+                  <textarea></textarea>
+                </div>
+              </div>
+            </div>
+            <div class="actions">
+                <div class="ui primary button">Submit</div>
+            </div>
+        </div>
+
+        <button class="ui base button open-modal" data-modal="modal-queue">Analysis Queue</button>
+        <div class="ui small modal" id="modal-queue">
+            <i class="close icon"></i>
+            <div class="header">
+                Analysis Queue
+            </div>
+            <div class="content">
+                <div class="ui left labeled button" tabindex="0">
+                    <a class="ui basic right pointing label count">
+                        2,048
+                    </a>
+                    <div class="ui button">
+                        Game(s) in the Queue
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="ui divider"></div>
+
+        <div class="ui breadcrumb">
+            <a class="section">Dashboard</a>
+            <div class="divider"> / </div>
+            <div class="active section">Game</div>
+        </div>
+
+        <div class="ui divider"></div>
+
+        <div class="ui segment game-main-content" style="width:620px">
+
+            <h2>Elliott Neff() vs Carlsen, M() 1-0</h2>
+            <h4>Chess4Life on 2015.04.20 (D91) -</h4>
+
+            <div class="ui top attached tabular menu">
+                <a class="item active" data-tab="pgn">PGN</a>
+                <a class="item" data-tab="best">Best Moves</a>
+            </div>
+            <div class="ui bottom attached tab segment active" data-tab="pgn">                
+                <div style="overflow:hidden">
+                    <div class="ui left floated menu">
+                        <a class="item"><i class="play icon"></i>Play</a>
+                        <a class="item"><i class="pause icon"></i>Pause</a>
+                        <a class="item"><i class="step forward icon"></i>Next</a>
+                    </div>
+                </div>
+
+                <div class="ui hidden divider"></div>
+
+            
+         
+                <div id="moveList" style="width:100%;box-sizing:border-box;height:500px;overflow-y:auto;border:1px solid #e4e4e4;border-radius:2px;">
+                    <table class="ui celled table">
+                        <tr>
+                            <td id="sr1">1</td>
+                            <td id="0" class="">d4</td>
+                            <td id="1" class="">Nf6</td>
+                        </tr>
+                        <tr>
+                            <td id="sr2">2</td>
+                            <td id="2" class="">c4</td>
+                            <td id="3" class="">g6</td>
+                        </tr>
+                        <tr>
+                            <td id="sr3">3</td>
+                            <td id="4" class="">Nc3</td>
+                            <td id="5" class="active-move">d5</td>
+                        </tr>
+                        <tr>
+                            <td id="sr4">4</td>
+                            <td id="6">Nf3</td>
+                            <td id="7" class="">Bg7</td>
+                        </tr>
+                        <tr>
+                            <td id="sr5">5</td>
+                            <td id="8">Bg5</td>
+                            <td id="9" class="">Ne4</td>
+                        </tr>
+                        <tr>
+                            <td id="sr6">6</td>
+                            <td id="10">cxd5</td>
+                            <td id="11" class="">Nxg5</td>
+                        </tr>
+                        <tr>
+                            <td id="sr7">7</td>
+                            <td id="12">Nxg5</td>
+                            <td id="13" class="">e6</td>
+                        </tr>
+                        <tr>
+                            <td id="sr8">8</td>
+                            <td id="14">Nf3</td>
+                            <td id="15" class="">exd5</td>
+                        </tr>
+                        <tr>
+                            <td id="sr9">9</td>
+                            <td id="16">e3</td>
+                            <td id="17" class="">O-O</td>
+                        </tr>
+                        <tr>
+                            <td id="sr10">10</td>
+                            <td id="18">b4</td>
+                            <td id="19" class="">Qd6</td>
+                        </tr>
+                        <tr>
+                            <td id="sr11">11</td>
+                            <td id="20">Qb3</td>
+                            <td id="21" class="">c6</td>
+                        </tr>
+                        <tr>
+                            <td id="sr12">12</td>
+                            <td id="22">Be2</td>
+                            <td id="23" class="">Be6</td>
+                        </tr>
+                        <tr>
+                            <td id="sr13">13</td>
+                            <td id="24">O-O</td>
+                            <td id="25" class="">Nd7</td>
+                        </tr>
+                        <tr>
+                            <td id="sr14">14</td>
+                            <td id="26">Rac1</td>
+                            <td id="27" class="">b5</td>
+                        </tr>
+                        <tr>
+                            <td id="sr15">15</td>
+                            <td id="28">a4</td>
+                            <td id="29" class="">bxa4</td>
+                        </tr>
+                        <tr>
+                            <td id="sr16">16</td>
+                            <td id="30">Qxa4</td>
+                            <td id="31" class="">Rfb8</td>
+                        </tr>
+                        <tr>
+                            <td id="sr17">17</td>
+                            <td id="32">Na2</td>
+                            <td id="33" class="">Rb6</td>
+                        </tr>
+                        <tr>
+                            <td id="sr18">18</td>
+                            <td id="34">Rc3</td>
+                            <td id="35" class="">Qb8</td>
+                        </tr>
+                        <tr>
+                            <td id="sr19">19</td>
+                            <td id="36">Rfc1</td>
+                            <td id="37" class="">a5</td>
+                        </tr>
+                        <tr>
+                            <td id="sr20">20</td>
+                            <td id="38">bxa5</td>
+                            <td id="39" class="">Rb2</td>
+                        </tr>
+                        <tr>
+                            <td id="sr21">21</td>
+                            <td id="40">Bf1</td>
+                            <td id="41" class="">Nb6</td>
+                        </tr>
+                        <tr>
+                            <td id="sr22">22</td>
+                            <td id="42">Qa3</td>
+                            <td id="43" class="">Nc4</td>
+                        </tr>
+                        <tr>
+                            <td id="sr23">23</td>
+                            <td id="44">Bxc4</td>
+                            <td id="45" class="">dxc4</td>
+                        </tr>
+                        <tr>
+                            <td id="sr24">24</td>
+                            <td id="46">h3</td>
+                            <td id="47" class="">Bf8</td>
+                        </tr>
+                        <tr>
+                            <td id="sr25">25</td>
+                            <td id="48">Qa4</td>
+                            <td id="49" class="">Qb5</td>
+                        </tr>
+                        <tr>
+                            <td id="sr26">26</td>
+                            <td id="50">Rxc4</td>
+                            <td id="51" class="">Bxc4</td>
+                        </tr>
+                        <tr>
+                            <td id="sr27">27</td>
+                            <td id="52">Rxc4</td>
+                            <td id="53" class="">Rxa5</td>
+                        </tr>
+                        <tr>
+                            <td id="sr28">28</td>
+                            <td id="54">Qxb5</td>
+                            <td id="55" class="">cxb5</td>
+                        </tr>
+                        <tr>
+                            <td id="sr29">29</td>
+                            <td id="56">Rc8</td>
+                            <td id="57" class="">Raxa2</td>
+                        </tr>
+                        <tr>
+                            <td id="sr30">30</td>
+                            <td id="58">Ne5</td>
+                            <td id="59" class="">Kg7</td>
+                        </tr>
+                        <tr>
+                            <td id="sr31">31</td>
+                            <td id="60">Nd7</td>
+                            <td id="61" class="">Bd6</td>
+                        </tr>
+                    </table>
+                </div>
+
+
+            </div>
+
+            <div class="ui bottom attached tab segment" data-tab="best">  
+                <table class="ui striped table" style="width:100%;">
+                    <thead>
+                        <tr>
+                            <th colspan="4">White</th>
+                            <th colspan="4">Black</th>
+                        </tr>
+                    </thead>
+                    <tr>
+                        <td>Move Played</td>
+                        <td>Best Move</td>
+                        <td>&nbsp;</td>
+                        <td>&nbsp;</td>
+                        <td>Move Played</td>
+                        <td>Best Move</td>
+                        <td>&nbsp;</td>
+                        <td>&nbsp;</td>
+                    </tr>
+                    <tr>
+                        <td>d2d4</td>
+                        <td><strong>e2e4</strong></td>
+                        <td><div class="ui label">15</div></td>
+                        <td><div class="ui tiny star rating" data-rating="4" data-max-rating="5"></div></td>
+                        <td><strong>g8f6</strong></td>
+                        <td><strong>g8f6</strong></td>
+                        <td><div class="ui label">10</div></td>
+                        <td><div class="ui tiny star rating" data-rating="3" data-max-rating="5"></div></td>
+                    </tr>
+                    <tr>
+                        <td>e2f1</td>
+                        <td><strong>c3c2</strong></td>
+                        <td><div class="ui red label">-145</div></td>
+                        <td><div class="ui tiny star rating" data-rating="2" data-max-rating="5"></div></td>
+                        <td><strong>d7b6</strong></td>
+                        <td><strong>d7b6</strong></td>
+                        <td><div class="ui red label">25</div></td>
+                        <td><div class="ui tiny star rating" data-rating="5" data-max-rating="5"></div></td>
+                    </tr>
+                    <tr>
+                        <td>d2d4</td>
+                        <td><strong>e2e4</strong></td>
+                        <td><div class="ui label">15</div></td>
+                        <td><div class="ui tiny star rating" data-rating="4" data-max-rating="5"></div></td>
+                        <td><strong>g8f6</strong></td>
+                        <td><strong>g8f6</strong></td>
+                        <td><div class="ui label">10</div></td>
+                        <td><div class="ui tiny star rating" data-rating="3" data-max-rating="5"></div></td>
+                    </tr>
+                    <tr>
+                        <td>e2f1</td>
+                        <td><strong>c3c2</strong></td>
+                        <td><div class="ui red label">-145</div></td>
+                        <td><div class="ui tiny star rating" data-rating="2" data-max-rating="5"></div></td>
+                        <td><strong>d7b6</strong></td>
+                        <td><strong>d7b6</strong></td>
+                        <td><div class="ui red label">25</div></td>
+                        <td><div class="ui tiny star rating" data-rating="5" data-max-rating="5"></div></td>
+                    </tr>
+                    <tr>
+                        <td>d2d4</td>
+                        <td><strong>e2e4</strong></td>
+                        <td><div class="ui label">15</div></td>
+                        <td><div class="ui tiny star rating" data-rating="4" data-max-rating="5"></div></td>
+                        <td><strong>g8f6</strong></td>
+                        <td><strong>g8f6</strong></td>
+                        <td><div class="ui label">10</div></td>
+                        <td><div class="ui tiny star rating" data-rating="3" data-max-rating="5"></div></td>
+                    </tr>
+                    <tr>
+                        <td>e2f1</td>
+                        <td><strong>c3c2</strong></td>
+                        <td><div class="ui red label">-145</div></td>
+                        <td><div class="ui tiny star rating" data-rating="2" data-max-rating="5"></div></td>
+                        <td><strong>d7b6</strong></td>
+                        <td><strong>d7b6</strong></td>
+                        <td><div class="ui red label">25</div></td>
+                        <td><div class="ui tiny star rating" data-rating="5" data-max-rating="5"></div></td>
+                    </tr>
+                </table>
+            </div>
+
+            <div class="right ui rail">
+                <div class="ui sticky">
+                    <div id="board1" style="width: 320px"></div> 
+                </div>
+            </div>
+        </div>
+        
+        <div class="ui divider"></div>
+
+        <a href="/logs" class="ui button">
+            Logs
+        </a>
+        <button id="import-pgn" class="ui button" type="submit" name="action">Import more games from PGN</button>
+
+    </div>
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+    <script src="semantic.min.js"></script>
+    <script src="chessboard-0.3.0.min.js"></script>
+    <script>
+        $('.open-modal').click(function(){
+            var modalLink = $(this).attr('data-modal');
+            $('.ui.small.modal#'+modalLink).modal('show');
+        });
+        $('.ui.sticky').sticky({context: '.game-main-content'});
+        $('.tabular.menu .item').tab();
+        $('.rating').rating('disable');
+        var board1 = ChessBoard('board1', 'start');
+    </script>
+</body>
+</html>

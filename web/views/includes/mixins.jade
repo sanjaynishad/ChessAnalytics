@@ -1,0 +1,126 @@
+mixin move_difference(turn)
+	- if (turn.difference > 500)
+		strong.catastrophic  Catastrophic!!
+	- else if (turn.difference > 250)
+		strong.really-bad Really Bad!
+	- else if (turn.difference > 100)
+		strong.bad Bad!
+	- else if (turn.difference > 75)
+		strong.not-so-good Not good!
+	- else if (turn.difference > 50)
+		strong.egh Egh.
+	- else if (turn.difference > 25)
+		strong.ok  Ok
+	- else
+		strong.good  Good!
+
+mixin strength(strength)
+	div.badge-container
+		if (strength >= 100)
+			span.badge.badge-success= strength
+		else if(strength <= -100)
+			span.badge.badge-important= strength
+		else
+			span.badge= strength
+
+
+mixin turn(turn)
+	div.turn-data
+		span  #{turn.actual_move.bestmove[0]} 
+		|  vs 
+		span=turn.bestmove.bestmove[0] 
+	mixin strength(turn.actual_move.strength) 
+	mixin move_difference(turn)
+	// i.icon-comment.fr
+
+mixin analyzeForm
+	div.row-fluid
+		div.span12			
+			form.form-vertical(method="post", action="/analyse-game", data-loader="analysis_form")
+				label.checkbox(for="private") Private?
+					input#private(type="checkbox", name="private")
+				label(for="pgn") PGN - Must be valid!	Don't break me!
+				textarea#pgn(name="pgn")
+				div
+					input.btn.btn-primary.fr(type="submit", value="Submit")
+
+mixin queueStats
+	div(data-loader="queuestats")
+		div.results
+			div.row-fluid
+				h3.span12.tc
+					a.ui.basic.right.pointing.label.count
+					.ui.button Game(s) in the Queue
+			div.game_list
+			div.messages
+		script(type="text/handlebars", id="queue_games")
+			{{#if games.length}}
+			{{#each games}}
+			div.row-fluid
+				div.span4 {{date}} - {{event}}
+				div.span5 {{white}} vs. {{black}}
+				div.span3 {{result}}
+			{{/each}}
+			{{else}}
+			p No games being analyzed currently
+			{{/if}}
+		
+
+mixin searchGames(games, method, action, link_root, prev, curr, next, max)
+		form(id='searchform', method="#{method}", action="#{action}")
+			.ui.search
+				.ui.icon.input
+					input.prompt(id='searchGames', type='text', name="search", placeholder="Search", value="#{search}")
+					i.search.icon
+				input(type="hidden", name="action", value="#{action}")
+			-if(show)
+				input(type="hidden", name="show", value="#{show}")
+
+			-if(games && games.length)
+
+				table.ui.striped.table
+					thead
+						tr
+							th Event
+							th Players
+							th Score
+							th Date
+							th  
+					tbody
+						each game in games
+							tr
+								td
+									a(href='/game/#{game._id}', title='#{game.white} vs. #{game.black} #{game.date}') #{game.date} - #{game.event}
+								td
+									a(href='/game/#{game._id}', title='#{game.white} vs. #{game.black} #{game.date}') #{game.white} vs. #{game.black}
+								td
+									a(href='/game/#{game._id}', title='#{game.white} vs. #{game.black} #{game.date}') #{game.result} #{game.termination}
+								td
+									a(href='/game/#{game._id}', title='#{game.white} vs. #{game.black} #{game.date}') #{game.date}
+								td
+									button.ui.red.button.deleteGame(data-gameid="#{game._id}")
+										i.trash.outline.icon
+										|																 Delete
+										
+										
+				.ui.pagination.menu
+						-if(curr > 1)
+							li.previous
+								a.item(href='#{link_root}=#{prev}') Previous 
+						-if(max)
+							li.center.item.active #{curr} / #{max}
+							-if(max != curr)
+								li.next
+									a.item(href='#{link_root}=#{next}') Next
+						-else
+							li.center.item.active 1 / 1
+							
+			-else
+								| 						No games analysed yet!
+					
+					
+mixin listLogs(files)
+	ul.ui.list
+		each file in files
+			li
+				a(href="/logs/#{file}") #{file}

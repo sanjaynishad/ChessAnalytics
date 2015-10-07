@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+</head>
+<body>
+    <div class="ui container">
+        <a href="/" class="brand">Chess Analytics</a>
+
+        <div class="ui small modal">
+            <i class="close icon"></i>
+            <div class="header">
+                Analyze a Game
+            </div>
+            <div class="content">
+              <div class="ui form">
+                <div class="field">
+                  <div class="ui checkbox">
+                    <input type="checkbox" checked="checked" name="contact-me">
+                    <label>Private?</label>
+                  </div>
+                </div>
+                <div class="field">
+                  <label>PGN - Must be valid! Don't break me!</label>
+                  <textarea></textarea>
+                </div>
+              </div>
+            </div>
+            <div class="actions">
+                <div class="ui primary button">Submit</div>
+            </div>
+        </div>
+
+        <div class="ui small modal">
+            <i class="close icon"></i>
+            <div class="header">
+                Analysis Queue
+            </div>
+            <div class="content">
+                <div class="ui left labeled button" tabindex="0">
+                    <a class="ui basic right pointing label count">
+                        2,048
+                    </a>
+                    <div class="ui button">
+                        Game(s) in the Queue
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="ui breadcrumb">
+            <a class="section">Dashboard</a>
+            <div class="divider"> / </div>
+            <div class="active section">Game</div>
+        </div> 
+
+        <a href="/logs" class="ui button">
+            Logs
+        </a>
+        <button id="import-pgn" class="ui button" type="submit" name="action">Import more games from PGN</button>
+
+    </div>
+
+    <script>
+        $('.ui.small.modal').modal('show');
+    </script>
+</body>
+</html>

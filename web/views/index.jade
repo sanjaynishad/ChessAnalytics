@@ -1,0 +1,41 @@
+extends layout
+include includes/mixins
+
+	
+block content
+	.ui.container
+			.ui.top.attached.tabular.menu
+				-if(show == 'public')
+					a.item(data-tab='private',href='/?show=private') Private Games
+					a.item.active(data-tab='public',href='/?show=public') Public Games
+				-else
+					a.item.active(data-tab='private',href='/?show=private') Private Games
+					a.item(data-tab='public',href='/?show=public') Public Games
+					
+			-if(show == 'public')
+				.ui.bottom.attached.tab.segment.active(data-tab='public')
+					h2 Public Games
+					mixin searchGames(public_games, 'GET', '/', '/?search='+search+'&show=public&public_page', public_prev, public_curr, public_next, public_max, search, show)
+							
+
+			-else
+				.ui.bottom.attached.tab.segment(data-tab='private')
+					h2 Private Games
+					mixin searchGames(private_games, 'GET', '/', '/?search='+search+'&show=private&private_page', private_prev, private_curr, private_next, private_max, search, show)
+
+			a.ui.button(href="/logs") Logs
+			
+			button#import-pgn.ui.button(name="action") Import more games from PGN
+		
+	.ui.small.modal(id="template-import-game-dialog")
+		form.modal-dialog(method="post",action="/uploadpgns",enctype="multipart/form-data")
+			div
+				div
+					h4 Select PGN file
+	
+				div
+					input.form-control(name="file",type="file",multiple="multiple",required)
+	
+				div
+					button#cancelbtn.btn.btn-default(type="button",data-dismiss="template-import-game-dialog") Cancel
+					button.btn.btn-default(type="submit",name="action",value="upload-pgns") Upload files

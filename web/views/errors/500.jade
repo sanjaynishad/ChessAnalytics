@@ -1,0 +1,16 @@
+extends ../layout
+include ../includes/mixins
+
+block content
+	div.container
+		ul.breadcrumb
+			li
+				a(href='/', title='Dashboard') Dashboard
+				span.divider /
+			li.active Error
+
+		div.row
+			div.span12
+				div.teaser
+					h1=error_title
+					p Whoops! It looks like something funny has happened - #{failure_text}

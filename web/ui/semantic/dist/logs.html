@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+    <link rel="stylesheet" type="text/css" href="semantic.min.css">
+</head>
+<body>
+
+   <div class="ui container">
+        <div>
+            <a href="/" class="ui primary button">Chess Analytics</a>
+        </div>
+
+        <div class="ui divider"></div>
+
+        <button class="ui base button open-modal" data-modal="modal-game">Analyze a Game</button>
+        <div class="ui small modal" id="modal-game">
+            <i class="close icon"></i>
+            <div class="header">
+                Analyze a Game
+            </div>
+            <div class="content">
+              <div class="ui form">
+                <div class="field">
+                  <div class="ui checkbox">
+                    <input type="checkbox" name="contact-me">
+                    <label>Private?</label>
+                  </div>
+                </div>
+                <div class="field">
+                  <label>PGN - Must be valid! Don't break me!</label>
+                  <textarea></textarea>
+                </div>
+              </div>
+            </div>
+            <div class="actions">
+                <div class="ui primary button">Submit</div>
+            </div>
+        </div>
+
+        <button class="ui base button open-modal" data-modal="modal-queue">Analysis Queue</button>
+        <div class="ui small modal" id="modal-queue">
+            <i class="close icon"></i>
+            <div class="header">
+                Analysis Queue
+            </div>
+            <div class="content">
+                <div class="ui left labeled button" tabindex="0">
+                    <a class="ui basic right pointing label count">
+                        2,048
+                    </a>
+                    <div class="ui button">
+                        Game(s) in the Queue
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="ui divider"></div>
+
+        <ul class="ui list">
+            <li><a href="/logs/1440991435225.txt">1440991435225.txt</a></li>
+        </ul>
+
+
+    </div>
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+    <script src="semantic.min.js"></script>
+    <script>
+        $('.open-modal').click(function(){
+            var modalLink = $(this).attr('data-modal');
+            $('.ui.small.modal#'+modalLink).modal('show');
+        });        
+    </script>
+</body>
+</html>

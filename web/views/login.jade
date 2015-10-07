@@ -1,0 +1,23 @@
+extends layout
+
+include includes/mixins
+
+block content
+	div.container
+		div.row
+			div.span12
+				div.teaser
+				
+					p Welcome to Chess Analytics.  
+					p After analyzing a game, you can see what moves you took, what move the engine would have taken, the quality of the move, and your positional strength after the move.  This will allow you to focus specifically on where the game went wrong.  
+					p Below are some public games that are already analyzed - you are welcome to check them out - sign in to start analyzing games of your own. 
+
+			
+					p.tc
+						a.btn.btn-primary(href="/auth/google") Sign In with Google to Analyze
+				
+	div.container
+		div.row
+			h1.span12 Public Games
+
+	mixin searchGames(public_games, "GET", req.path, '/login/?search='+search+'&public_page', public_prev, public_curr, public_next, public_max, search)

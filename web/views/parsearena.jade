@@ -1,0 +1,18 @@
+extends layout
+include includes/mixins
+
+
+
+block content
+	div.container
+
+		form(method="post",action="",enctype="multipart/form-data")
+			div.content
+				div
+					h4.title Select PGN file
+	
+				div
+					input.form-control(name="file",type="file",multiple="multiple")
+	
+				div.footer
+					button.btn.btn-default(type="submit",name="action",value="upload-pgns") Upload files

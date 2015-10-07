@@ -1,0 +1,25 @@
+extends layout
+include includes/mixins
+
+block content
+
+
+		table#usertable.ui.celled.table
+			thead
+				tr
+					th
+					th Title
+					th Pgn
+					th Upload Date
+					th 
+			tbody
+			tfoot
+				tr
+					th(colspan="5")
+						div.ui.right.floated.pagination.menu
+							button#updaterolebutton Update Role
+				tr
+					th(colspan="5")
+						div#userfoot.ui.right.floated.pagination.menu
+
+						

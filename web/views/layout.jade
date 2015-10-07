@@ -1,0 +1,82 @@
+doctype html
+html
+	head
+		title Chess Analytics
+		link(rel='stylesheet', href='/css/bootstrap.min.css')
+		link(rel='stylesheet', href='/css/style.css')
+
+		script(type='text/javascript', src='/js/socket.io.js')
+
+		script(type='text/javascript', src='/js/jquery-2.1.4.min.js')
+		script(type='text/javascript', src='/js/chess_xhr.js')
+		script(type='text/javascript', src='/js/chess.js')
+		script(type='text/javascript', src='/js/bootstrap.min.js')
+		script(type='text/javascript', src='/js/handlebars.js')
+		script(type='text/javascript', src='/js/app.js')
+		script(type='text/javascript', src='/js/jquery-ui-1.10.4.custom.min.js')
+		
+		
+		script(type='text/javascript', src='/js/bootstrap.js')
+		script(type='text/javascript', src='/js/bootstrap-slider.min.js')
+		script(type='text/javascript', src='/js/ui.js')
+		script(type='text/javascript', src='/js/girdle.js')
+		script(type='text/javascript', src='/js/font_fit.js')
+		script(type='text/javascript', src='/js/kingdom-board.js')
+		script(type='text/javascript', src='/js/worker.js')
+		script(type='text/javascript', src='/js/kingdom-pgn.js')
+		script(type='text/javascript', src='/js/jquery.oauthpopup.js')
+		script(type='text/javascript', src='/js/bootstrap-datetimepicker.js')
+		script(src='/lib/semantic/dist/semantic.min.js')
+		
+		link(rel='stylesheet', href='/css/bootstrap.css')
+		link(rel='stylesheet', href='/css/font-awesome.min.css')
+		link(rel='stylesheet', href='/css/bootstrap-slider.css')
+		link(rel='stylesheet', href='/css/kingdom.css')
+
+		link(rel='stylesheet', href='/css/chess.css')
+		link(rel='stylesheet', href='/css/gnomechess.css')
+		link(rel='stylesheet', href='/css/bootstrap-datetimepicker.js')
+		link(rel='stylesheet', type='text/css', href='/lib/semantic/dist/semantic.min.css')
+
+		include ga.jade
+
+	body
+		.ui.container
+			div
+				a.ui.primary.button(href='/') Chess Analytics
+				
+				-if(!user)
+					a.oauth-popup.btn.btn-info.btn-lg.btn-block.btn-singin.btn-pass
+						i.fa.fa-ticket Login with Chess4Life Passport
+				-else
+					div Welcome #{user.name}!
+					
+			.ui.divider
+			button.ui.base.button.open-modal(data-modal='modal-game') Analyze a Game
+			#modal-game.ui.small.modal
+				i.close.icon
+				.header
+					| Analyze a Game
+				.content
+					.ui.form
+						.field
+							.ui.checkbox
+								input(type='checkbox', id='private', name='private')
+								label Private?
+						.field
+							label PGN - Must be valid! Don't break me!
+							textarea(id='pgn', name='pgn',required)
+				.actions
+					.ui.primary.button(id='nalyzegamebtn') Submit
+			button.ui.base.button.open-modal(data-modal='modal-queue') Analysis Queue
+			#modal-queue.ui.small.modal
+				i.close.icon
+				.header
+					| Analysis Queue
+				.content
+					.ui.left.labeled.button(tabindex='0')
+						mixin queueStats
+			.ui.divider
+			
+
+		block content

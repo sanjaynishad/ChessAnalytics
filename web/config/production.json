@@ -1,0 +1,5 @@
+{
+    "chesshub": {
+        "db": "mongodb://heroku_rv9cr8s0:3bokno1qkut6catnfhqdq1js0o@ds045001.mongolab.com:45001/heroku_rv9cr8s0"
+    }
+}

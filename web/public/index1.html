@@ -1,0 +1,285 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Kingdom: The fate of the kingdom is in your hands.</title>
+        <meta charset=utf-8>
+        <link href="css/bootstrap.min.css" rel="stylesheet">
+        <link href="css/font-awesome.min.css" rel="stylesheet">
+        <link href="css/bootstrap-slider.css" rel="stylesheet">
+<!-- 		<link rel="stylesheet" href="https://ajax.googleapis.com/ajax/libs/jqueryui/1.11.4/themes/smoothness/jquery-ui.css"> -->
+        <link rel=stylesheet href="css/kingdom.css">
+        <script type="text/javascript" src="js/jquery-2.1.4.min.js"></script>
+        <script type="text/javascript" src="js/bootstrap.min.js"></script>
+        <script type="text/javascript" src="js/bootstrap-slider.min.js"></script>
+        <script type="text/javascript" src="js/ui.js"></script>
+        <script src="js/girdle.js"></script>
+        <script src="js/font_fit.js"></script>
+        <script src="js/kingdom-board.js"></script>
+        <script src="js/worker.js"></script>
+        <script src="js/kingdom-pgn.js"></script>
+<!--         <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.11.4/jquery-ui.min.js"></script> -->
+
+
+        <style type="text/css">
+            #bootstrapSelectForm .selectContainer .form-control-feedback {
+                /* Adjust feedback icon position */
+                right: -15px;
+            }
+
+            .modal.modal-wide .modal-dialog {
+                width: 90%;
+            }
+            body{
+                background: url('img/bg.png');
+                background-size: cover;
+                background-position-y: -2%;
+                padding-bottom: 2%;
+            }
+
+            .level{
+                text-align: center;
+            }
+
+            .level input{
+
+            }
+
+            .level span{
+            }
+
+            .side{
+                margin-bottom: 2%;
+                text-align: center;
+            }
+            .side img{
+                width: 72px;
+                height: 72px;
+            }
+
+        </style>
+    </head>
+    <body>
+
+        <!-- Modal -->
+        <div id="levelModal" class="modal fade" role="dialog">
+            <div class="modal-dialog">
+
+                <!-- Modal content-->
+                <div class="modal-content" style="margin-top: 15%;">
+                    <div class="modal-header">
+                        <button type="button" class="close cancel" data-dismiss="modal">&times;</button>
+                        <h2 class="modal-title">New Game</h2>
+                    </div>
+                    <div class="modal-body">
+                        <div class="row">
+                            <h2 style="text-align: center">Level</h2>
+                        </div>
+
+                        <div class="row">
+                            <div class="col-md-12 level">
+                                <input id="ex6" type="text" data-slider-min="0" data-slider-max="20" data-slider-step="1" data-slider-value="0">
+                                <span id="ex6CurrentSliderValLabel">Current Slider Value: <span id="ex6SliderVal">0</span></span>
+                            </div>
+                        </div>
+
+
+                        <div class="row">
+                            <h3 style="text-align: center">Side</h3>
+                        </div>
+                        <div class="row side">
+                            <div class="col-md-2 col-md-offset-3">
+                                <a href="#" data-dismiss="modal" data-toggle="tooltip" title="White" value="1" id="white">
+                                    <img src="img/pieces/default/wk.png" alt=""/>
+                                </a>
+                            </div>
+                            <div class="col-md-2">
+                                <a href="#" data-dismiss="modal" data-toggle="tooltip" title="Random Color" value="3">
+                                    <img src="img/random.svg" alt=""/>
+                                </a>
+                            </div>
+                            <div class="col-md-2">
+                                <a href="#" data-dismiss="modal" data-toggle="tooltip" title="Black" value="2">
+                                    <img src="img/pieces/default/bk.png" alt=""/>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-default cancel" data-dismiss="modal">Close</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+        <!-- Modal -->
+        <div id="myModal" class="modal modal-wide fade" role="dialog">
+            <div class="modal-dialog">
+
+                <!-- Modal content-->
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal">&times;</button>
+                        <h4 class="modal-title">Chess Game Settings</h4>
+                    </div>
+                    <div class="modal-body">
+                        <div class="row">
+                            <div class="col-md-12">
+                                <div class="col-md-6">
+                                    <div class="panel panel-default">
+                                        <div class="panel-heading">
+                                            FEN customization
+                                        </div>
+                                        <!-- List group -->
+                                        <ul class="list-group">
+                                            <li class="list-group-item">
+                                                <label for="fen_input">Current FEN:</label>
+                                                <input type="text" class="form-control" id="current_fen" readonly>
+                                            </li>
+                                            <li class="list-group-item">
+                                                <input type="text" class="form-control" id="fen_input"
+                                                       placeholder="Write a new FEN string">
+
+                                                <div class="text-right">
+                                                    <button type="button" class="btn btn-info" onclick="board.set_fen()">
+                                                        Process FEN
+                                                    </button>
+                                                </div>
+                                            </li>
+                                            <li class="list-group-item">
+                                                <select class="form-control" id="fen_selection"
+                                                        onchange="board.set_fen_selection()">
+                                                    <option>rnbqkbnr/pppppppp/8/8/8/8/PPPPPPPP/RNBQKBNR w KQkq - 0 1</option>
+                                                    <option>4k3/8/8/8/8/8/8/R3K2R w - - 0 1</option>
+                                                    <option>4k3/8/8/8/8/8/8/3QK3 w - - 0 1</option>
+                                                    <option>4k3/8/8/8/8/8/8/R3K3 w - - 0 1</option>
+                                                    <option>4k3/8/8/8/8/8/8/2B1KB2 w - - 0 1</option>
+                                                    <option>4k3/8/8/8/8/8/8/4KBN1 w - - 0 1</option>
+                                                    <option>4k2r/8/8/8/8/8/8/3QK3 w - - 0 1</option>
+                                                    <option>3qk3/8/8/8/8/8/8/2KQ4 w - - 0 1</option>
+                                                    <option>rnbqkbnr/pppp1ppp/8/4p3/5P2/8/PPPPP1PP/RNBQKBNR w - - 0 1</option>
+                                                    <option>4k3/pppppppp/8/8/8/8/PPPPPPPP/RNBQKBNR w - - 0 1</option>
+                                                    <option>K7/8/8/4k3/8/8/8/7R w - - 0 1</option>
+                                                    <option>8/3pkp2/4p3/8/8/8/8/4K1RQ w - - 0 1</option>
+                                                    <option>3k4/8/8/8/8/8/7Q/3K4 w - - 0 1</option>
+                                                    <option>5r2/3qPbkB/8/7P/8/8/8/1K1R4 w - - 0 1</option>
+                                                </select>
+                                            </li>
+
+                                        </ul>
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="panel panel-default">
+                                        <div class="panel-heading">
+                                            Other settings
+                                        </div>
+                                        <!-- List group -->
+                                        <ul class="list-group">
+                                            <li class="list-group-item">
+                                                <button type="button" class="btn" style="background-color:#B58863" id="switch_theme"
+                                                        onclick="board.change_theme_color()">
+                                                    Switch board color
+                                                </button>
+                                            </li>
+                                            <li class="list-group-item">
+                                                <button type="button" class="btn" style="background-color:#B58863" id="switch_pointers"
+                                                        onclick="board.change_pointer_type()">
+
+                                                    <span id="pointer_type" class="glyphicon glyphicon-arrow-right" aria-hidden="true"></span>
+                                                    Switch pointer method
+                                                </button>
+                                            </li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+
+
+        <nav class="navbar navbar-inverse">
+            <div class="container-fluid">
+                <!-- Brand and toggle get grouped for better mobile display -->
+                <div class="navbar-header">
+                    <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+                        <span class="sr-only">Toggle navigation</span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                    </button>
+                    <a class="navbar-brand" href="#">ChessGame</a>
+                </div>
+
+                <!-- Collect the nav links, forms, and other content for toggling -->
+                <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+                    <ul class="nav navbar-nav">                        
+                        <li><a href="index.html">Home</a></li>
+                        <li><a href="#">About</a></li>                      
+                    </ul>
+
+                    <ul class="nav navbar-nav navbar-right">
+                        <li><a id="btnNewGame" href='#' data-toggle="modal" data-target="#levelModal" id="new_game">New Game</a></li>
+                        <li><a href="#" onclick="loadModal();">Game Settings</a></li>
+                    </ul>
+                </div><!-- /.navbar-collapse -->
+            </div><!-- /.container-fluid -->
+        </nav>
+
+        <div class="container">
+            <div class="row">
+                <div class="col-md-12" style="margin-bottom: 1%">
+                    <button class="btn btn-default" onclick="pastePGN()">Paste PGN</button>
+                    <button class="btn btn-default" onclick="KingdomPGN.Play()">Play</button>
+                    <button class="btn btn-default" onclick="KingdomPGN.Stop()">Stop</button>
+                    <button class="btn btn-default" onclick="KingdomPGN.Next()">Next</button>
+                    <button class="btn btn-default" onclick="KingdomPGN.Reset()">Reset</button>
+                    <button class="btn btn-default" onclick="KingdomPGN.RotateBoard()">Rotate Board</button>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-6">
+                    <div class="row">
+                        <div class="col-md-12">
+                            <div id="board"></div>
+                        </div>
+                    </div>
+
+                </div>
+
+                <div class="col-md-3">
+                    <div class="row">
+                        <div class="col-md-12">
+                            <div id="moveList" style="height: 500px"></div>
+                        </div>
+                    </div>                    
+                </div>
+            </div>
+
+        </div>
+        <!--<script src="js/css3-mediaqueries.js"></script>-->
+        <script>
+            var b = new KingdomPGN.ChessBoard('board');
+            KingdomPGN.GetMoveList('moveList');
+            function pastePGN() {
+                var pgn = prompt('Paste your PGN', '');
+                KingdomPGN.SetPgn(pgn);
+            }
+			
+			$(function() {
+				$( "#board" ).draggable();
+				$( "#moveList" ).draggable();
+			  });
+			
+        </script>
+
+    </body>
+
+</html>

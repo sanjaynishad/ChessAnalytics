@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+</head>
+<body>
+    <div class="ui container">
+        <a href="/" class="brand">Chess Analytics</a>
+
+        <div class="ui small modal">
+            <i class="close icon"></i>
+            <div class="header">
+                Analyze a Game
+            </div>
+            <div class="content">
+              <div class="ui form">
+                <div class="field">
+                  <div class="ui checkbox">
+                    <input type="checkbox" checked="checked" name="contact-me">
+                    <label>Private?</label>
+                  </div>
+                </div>
+                <div class="field">
+                  <label>PGN - Must be valid! Don't break me!</label>
+                  <textarea></textarea>
+                </div>
+              </div>
+            </div>
+            <div class="actions">
+                <div class="ui primary button">Submit</div>
+            </div>
+        </div>
+
+        <div class="ui small modal">
+            <i class="close icon"></i>
+            <div class="header">
+                Analysis Queue
+            </div>
+            <div class="content">
+                <div class="ui left labeled button" tabindex="0">
+                    <a class="ui basic right pointing label count">
+                        2,048
+                    </a>
+                    <div class="ui button">
+                        Game(s) in the Queue
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+        <div class="ui top attached tabular menu">
+            <a class="item" data-tab="private">Private Games</a>
+            <a class="item active" data-tab="public">Public Games</a>
+        </div>
+        <div class="ui bottom attached tab segment" data-tab="private">
+            <h2>Private Games</h2>
+            <div class="ui search">
+                <div class="ui icon input">
+                    <input class="prompt" type="text" placeholder="Search">
+                    <i class="search icon"></i>
+                </div>
+            </div>
+            No games analysed yet!
+        </div>
+        <div class="ui bottom attached tab segment active" data-tab="public">
+            <h2>Public Games</h2>
+            <div class="ui search">
+                <div class="ui icon input">
+                    <input class="prompt" type="text" placeholder="Search">
+                    <i class="search icon"></i>
+                </div>
+            </div>
+            <table class="ui striped table">
+                <thead>
+                  <tr>
+                    <th>Event</th>
+                    <th>Players</th>
+                    <th>Score</th>
+                    <th>&nbsp;</th>
+                  </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><a href="/game/55e59027b006080300f6f76c" title="Elliott Neff vs. Carlsen, M 2015.04.20 (D91)">2015.04.20 (D91) - Chess4Life</a></td>
+                        <td><a href="/game/55e59027b006080300f6f76c" title="Elliott Neff vs. Carlsen, M 2015.04.20 (D91)">Elliott Neff vs. Carlsen, M</a></td>
+                        <td><a href="/game/55e59027b006080300f6f76c" title="Elliott Neff vs. Carlsen, M 2015.04.20 (D91)">1-0</a></td>
+                        <td>
+                            <button class="ui red button">
+                                <i class="trash outline icon"></i>
+                                Delete
+                            </button>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td><a href="/game/55e59027b006080300f6f76c" title="Elliott Neff vs. Carlsen, M 2015.04.20 (D91)">2015.04.20 (D91) - Chess4Life</a></td>
+                        <td><a href="/game/55e59027b006080300f6f76c" title="Elliott Neff vs. Carlsen, M 2015.04.20 (D91)">Elliott Neff vs. Carlsen, M</a></td>
+                        <td><a href="/game/55e59027b006080300f6f76c" title="Elliott Neff vs. Carlsen, M 2015.04.20 (D91)">1-0</a></td>
+                        <td>
+                            <button class="ui red button">
+                                <i class="trash outline icon"></i>
+                                Delete
+                            </button>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td><a href="/game/55e59027b006080300f6f76c" title="Elliott Neff vs. Carlsen, M 2015.04.20 (D91)">2015.04.20 (D91) - Chess4Life</a></td>
+                        <td><a href="/game/55e59027b006080300f6f76c" title="Elliott Neff vs. Carlsen, M 2015.04.20 (D91)">Elliott Neff vs. Carlsen, M</a></td>
+                        <td><a href="/game/55e59027b006080300f6f76c" title="Elliott Neff vs. Carlsen, M 2015.04.20 (D91)">1-0</a></td>
+                        <td>
+                            <button class="ui red button">
+                                <i class="trash outline icon"></i>
+                                Delete
+                            </button>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+
+            <div class="ui pagination menu">
+              <a class="active item">
+                1
+              </a>
+            </div>
+        </div>
+
+        <a href="/logs" class="ui button">
+            Logs
+        </a>
+        <button id="import-pgn" class="ui button" type="submit" name="action">Import more games from PGN</button>
+
+    </div>
+
+    <script>
+        $('.ui.small.modal').modal('show');
+        $('.tabular.menu .item').tab();
+    </script>
+</body>
+</html>
