@@ -244,5 +244,36 @@
 					CA.highlight();
 				},500);
 			}
+			
+
+//			if($( "#analyzegame" ).length){
+//				$('#analyzegame').click(function(ev) {
+//					if(!$( "#userinfo" ).length){
+//						console.log('analyzegame');
+//						ev.preventDefault();
+//						alert("Please login");
+//						return false;
+//					}
+//					console.log('analyzegame1');
+//				});
+//			}
+//			if($( "#analyzequeue" ).length){
+//				$('#analyzequeue').click(function(ev) {
+//					if(!$( "#userinfo" ).length){
+//						ev.preventDefault();
+//						alert("Please login");
+//						return false;
+//					}
+//				});
+//			}
+//			if($( "#privategame" ).length){
+//				$('#privategame').click(function(ev) {
+//					if(!$( "#userinfo" ).length){
+//						ev.preventDefault();
+//						alert("Please login");
+//						return false;
+//					}
+//				});
+//			}
 		});
 }(chess));

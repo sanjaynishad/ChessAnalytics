@@ -38,45 +38,7 @@ html
 		link(rel='stylesheet', href='/css/bootstrap-datetimepicker.js')
 		link(rel='stylesheet', type='text/css', href='/lib/semantic/dist/semantic.min.css')
 
-		include ga.jade
-
 	body
 		.ui.container
-			div
-				a.ui.primary.button(href='/') Chess Analytics
-				
-				-if(!user)
-					a.oauth-popup.btn.btn-info.btn-lg.btn-singin.btn-pass
-						i.fa.fa-ticket Login with Chess4Life Passport
-				-else
-					div#userinfo(data-id='{{ user.id }}') Welcome #{user.name}!
-					
-			.ui.divider
-			button#analyzegame.ui.base.button.open-modal(data-modal='modal-game') Analyze a Game
-			#modal-game.ui.small.modal
-				i.close.icon
-				.header
-					| Analyze a Game
-				.content
-					.ui.form
-						.field
-							.ui.checkbox
-								input(type='checkbox', id='private', name='private')
-								label Private?
-						.field
-							label PGN - Must be valid! Don't break me!
-							textarea(id='pgn', name='pgn',required)
-				.actions
-					.ui.primary.button(id='nalyzegamebtn') Submit
-			button#analyzequeue.ui.base.button.open-modal(data-modal='modal-queue') Analysis Queue
-			#modal-queue.ui.small.modal
-				i.close.icon
-				.header
-					| Analysis Queue
-				.content
-					.ui.left.labeled.button(tabindex='0')
-						mixin queueStats
-			.ui.divider
-			
 
 		block content

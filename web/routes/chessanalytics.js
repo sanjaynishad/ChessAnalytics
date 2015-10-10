@@ -4,6 +4,8 @@ var models = require('./../chessanalytics/models'),
 	queue_manager = require('./../chessanalytics/lib/queue-manager').queue_manager,
 	analyser = require('./../chessanalytics/lib/analyser').analyser,
 	HookManager = require('./../chessanalytics/lib/hook-manager');
+//var helper = require('./../config/helper')
+var helper = require('../config/helper.js');
 var express = require('express');
 var mongoose = require('mongoose');
 var router = express.Router();
@@ -225,8 +227,8 @@ exports.game = function(req, res){
 		});
 	});
 };
-router.get('/game/:id.:format', exports.game);
-router.get('/game/:id', exports.game);
+router.get('/game/:id.:format', [helper.ensureAuthenticated], exports.game);
+router.get('/game/:id', [helper.ensureAuthenticated], exports.game);
 // router.get('/game', exports.game);
 	/* Dashboard */
 exports.index = function(req, res){ 
@@ -298,8 +300,8 @@ exports.index = function(req, res){
 		});
 	});
 };
-router.get('/index', exports.index);
-router.get('/', exports.index);
+router.get('/index', [helper.ensureAuthenticated], exports.index);
+router.get('/', [helper.ensureAuthenticated], exports.index);
 	/* Login */
 exports.login = function(req, res){
 	var public_next, public_prev;
@@ -362,7 +364,7 @@ router.get('/repos', function(req, res) {
 		}
 });
 
-router.post('/uploadpgns', function(req, res) {
+router.post('/uploadpgns', [helper.ensureAuthenticated], function(req, res) {
     
     req.pipe(req.busboy);
     req.busboy.on('file', function (fieldname, file, filename) {
@@ -386,7 +388,11 @@ router.post('/uploadpgns', function(req, res) {
 });
 
 router.get('/login', exports.login);
-router.get('/logout', function(req, res){ req.logOut(); res.redirect('/login'); });
+router.get('/logout', function(req, res){
+	delete req.session.user;
+	req.logOut(); 
+	res.redirect('/login'); 
+});
 
 var nconf = require('nconf');
 exports.setdepth = function(req, res){
@@ -394,7 +400,7 @@ exports.setdepth = function(req, res){
 	res.send({ message: "ok" });
 
 };
-router.get('/setdepth/:depth', exports.setdepth);
+router.get('/setdepth/:depth', [helper.ensureAuthenticated], exports.setdepth);
 exports.loadzip = function(req, res){
 	models.Queue.remove({}, function(err){});
 	var file_url = 'http://www.pgnmentor.com/players/Carlsen.zip';
@@ -450,7 +456,7 @@ exports.analyse_game = function(req, res){
 	
 	res.send({ message: MESSAGES.added_to_queue });
 };
-router.post('/analyse-game', exports.analyse_game);
+router.post('/analyse-game', [helper.ensureAuthenticated], exports.analyse_game);
 
 exports.clearq = function(req, res){
 	models.Queue.remove({}, function(err){});
@@ -465,7 +471,7 @@ exports.io_connection = function(client){
 	});
 };
 
-router.post('/deleteGame', function(req, res){
+router.post('/deleteGame', [helper.ensureAuthenticated], function(req, res){
 
 	models.Game.remove({_id:req.body.id}, 	function (err) {
 		if (err) {

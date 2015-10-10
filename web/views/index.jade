@@ -6,11 +6,11 @@ block content
 	.ui.container
 			.ui.top.attached.tabular.menu
 				-if(show == 'public')
-					a.item(data-tab='private',href='/?show=private') Private Games
-					a.item.active(data-tab='public',href='/?show=public') Public Games
+					a#privategame.item(data-tab='private',href='/?show=private') Private Games
+					a#publicgame.item.active(data-tab='public',href='/?show=public') Public Games
 				-else
-					a.item.active(data-tab='private',href='/?show=private') Private Games
-					a.item(data-tab='public',href='/?show=public') Public Games
+					a#privategame.item.active(data-tab='private',href='/?show=private') Private Games
+					a#publicgame.item(data-tab='public',href='/?show=public') Public Games
 					
 			-if(show == 'public')
 				.ui.bottom.attached.tab.segment.active(data-tab='public')

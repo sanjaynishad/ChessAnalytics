@@ -1,4 +1,4 @@
-extends layout
+extends emptylayout
 
 include includes/mixins
 
@@ -14,10 +14,5 @@ block content
 
 			
 					p.tc
-						a.btn.btn-primary(href="/auth/google") Sign In with Google to Analyze
+						a.oauth-popup.btn.btn-info.btn-lg.btn-singin.btn-pass Login with Chess4Life Passport
 				
-	div.container
-		div.row
-			h1.span12 Public Games
-
-	mixin searchGames(public_games, "GET", req.path, '/login/?search='+search+'&public_page', public_prev, public_curr, public_next, public_max, search)
